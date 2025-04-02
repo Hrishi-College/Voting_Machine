@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Voting Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Live Voting Results</h2>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <p>Total Votes: <span id="totalVotes">0</span></p>
+        <canvas id="voteChart"></canvas>
+
+        <div class="table-container">
+            <div>
+                <h3>Machine A</h3>
+                <table id="tableA">
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Votes</th>
+                        <th>Percentage</th>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h3>Machine B</h3>
+                <table id="tableB">
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Votes</th>
+                        <th>Percentage</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <h3>Total</h3>
+        <div class="total-container">
+            <table id="tableTotal">
+                <tr>
+                    <th>Candidate</th>
+                    <th>Votes</th>
+                    <th>Percentage</th>
+                </tr>
+            </table>
+        </div>        
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+</html>
