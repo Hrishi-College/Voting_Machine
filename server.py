@@ -9,6 +9,13 @@ votes = {"A": {}, "B": {}}
 def home():
     return render_template("index.html")  
 
+@app.route('/reset_votes', methods=['POST'])
+def reset_votes():
+    global votes
+    votes = {"A": {}, "B": {}}  # Reset the votes
+    return jsonify({"message": "Votes reset successfully!"})
+
+
 @app.route('/vote', methods=['GET'])
 def vote():
     candidate = request.args.get("candidate")
