@@ -12,8 +12,9 @@ def home():
 @app.route('/reset_votes', methods=['POST'])
 def reset_votes():
     global votes
-    votes = {"A": {}, "B": {}}  # Reset the votes
-    return jsonify({"message": "Votes reset successfully!"})
+    votes = {"A": {}, "B": {}}  # Reset all votes
+    return jsonify({"message": "All votes have been reset!"})
+
 
 
 @app.route('/vote', methods=['GET'])

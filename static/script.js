@@ -95,6 +95,17 @@ function updateChart(data) {
     }
 }
 
+document.getElementById("reset-btn").addEventListener("click", function () {
+    fetch("/reset_votes", { method: "POST" })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);  // Show success message
+            location.reload();  // Refresh the page to see updated results
+        })
+        .catch(error => console.error("Error resetting votes:", error));
+});
+
+
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 }
