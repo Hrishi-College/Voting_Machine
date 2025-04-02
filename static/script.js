@@ -9,7 +9,10 @@ async function fetchVotes() {
 }
 
 function updateTables(data) {
-    let totalVotes = Object.values(data).reduce((sum, v) => sum + v, 0);
+    let totalVotesA = Object.keys(data).filter(k => k.startsWith("A")).reduce((sum, k) => sum + data[k], 0);
+    let totalVotesB = Object.keys(data).filter(k => k.startsWith("B")).reduce((sum, k) => sum + data[k], 0);
+    let totalVotes = totalVotesA + totalVotesB;
+    
     const tableA = document.getElementById("tableA");
     const tableB = document.getElementById("tableB");
     const tableTotal = document.getElementById("tableTotal");
@@ -23,8 +26,8 @@ function updateTables(data) {
         let votesB = data[`B${i}`] || 0;
         let totalVotesForCandidate = data[`Total${i}`] || 0;
 
-        let percentageA = totalVotes > 0 ? ((votesA / totalVotes) * 100).toFixed(2) + "%" : "0%";
-        let percentageB = totalVotes > 0 ? ((votesB / totalVotes) * 100).toFixed(2) + "%" : "0%";
+        let percentageA = totalVotesA > 0 ? ((votesA / totalVotesA) * 100).toFixed(2) + "%" : "0%";
+        let percentageB = totalVotesB > 0 ? ((votesB / totalVotesB) * 100).toFixed(2) + "%" : "0%";
         let totalPercentage = totalVotes > 0 ? ((totalVotesForCandidate / totalVotes) * 100).toFixed(2) + "%" : "0%";
 
         let rowA = `<tr><td>Candidate ${i}</td><td>${votesA}</td><td>${percentageA}</td></tr>`;
